@@ -1,0 +1,88 @@
+<!-- Copyright (c) 2021 Mastercard
+ 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+ 
+    http://www.apache.org/licenses/LICENSE-2.0
+ 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ 
+-->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="manifest.json">
+    <title>Ghobank</title>
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/site.css" rel="stylesheet" />
+    <link href="assets/css/custom.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <img src="assets/images/partner-icon.png" alt="logo" />
+                    <h2>&nbsp;Ghobank AHI</h2>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="javascript:;" onclick="logout();">
+                            Log out</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+        <div class=" container text-center ahi-register-container">
+            <div class="register-container landing-page">
+                <div class="row form-group">
+                    <h4>There is a new way to make payments</h4>
+                </div>
+
+                <div class="row form-group">
+                    <button type="button" class="reg-btn blue-button" onclick="registerPH()">
+                        REGISTER
+                    </button>
+                    <button type="button" class="unreg-btn blue-button" onclick="unregisterPH()">
+                        UNREGISTER
+                    </button>
+                </div>
+                <div class="row form-group">
+                    <h6>
+                        <small> We use cookies to give you the best online payment experience.
+                            <br> By clicking Register you agree to our use of cookies in accordance with our privacy
+                            policy.
+                        </small>
+                    </h6>
+                </div>
+                <div class="thirdPartyCookieError"></div>
+            </div>
+            <div class="status">
+                <p class="success"> </p>
+                <p class="failure"></p>
+                <p class="errCode"></p>
+                <p class="errMsg"></p>
+            </div>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <script src="assets/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="assets/js/browser-polyfill.min.js"></script>
+    <script src="assets/js/AHIArtefact.js"></script>
+    <script src="assets/js/bundledJS.js"></script>
+</body>
+
+</html>

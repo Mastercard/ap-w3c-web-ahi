@@ -1,0 +1,189 @@
+.navbar-header img {
+    height: 50px;
+}
+
+.navbar-header {
+    display: inline-flex;
+    margin-left: 3% !important;
+}
+
+.navbar-default {
+    background: lightblue;
+}
+
+.blue-button {
+    border: 3px solid #48C6EA;
+    padding: 5px;
+    width: 35%;
+    color: #48C6EA;
+    background: none;
+}
+
+
+/*Login page start*/
+
+.ahi-login-container {
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.ahi-login-container .container {
+    padding-top: 6%;
+    width: 50%;
+}
+
+.ahi-login-container .container form input[type=text], .ahi-login-container .container form input[type=password] {
+    width: 60%;
+    border-radius: 8px;
+    border: 1px solid #48C6EA;
+    outline: 0px;
+}
+
+
+/*Login page end*/
+
+
+/*Register page start*/
+
+.navbar-right {
+    margin-right: 0px;
+}
+
+.ahi-register-container {
+    margin-top: 10%;
+}
+
+.ahi-register-container .blue-button {
+    width: 15%;
+}
+
+.unreg-btn {
+    display: none;
+}
+
+.success {
+    color: #008000;
+}
+
+.failure,
+.errCode,
+.errMsg {
+    color: #ff0000;
+}
+
+
+/*Register page end*/
+
+
+/*Confirm/Cancel page start*/
+
+.invalid-feedback {
+    width: 100%;
+    margin-top: .25rem;
+    color: #dc3545;
+}
+
+.ahi-payment-container {
+    margin-top: 5%;
+}
+
+.ahi-payment-container .button-primary {
+    background-color: #48C6EA;
+    color: #fff;
+}
+
+
+/*Confirm/Cancel page end*/
+
+/*Instructions page*/
+.register-container {
+    margin-top: 5%;
+}
+#instruction_message, ul{
+    list-style: inherit;
+    text-align: left;
+    margin-left: 9%;
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+
+@media only screen and (max-width: 600px) {
+    .ahi-login-container .container {
+        width: 100%;
+    }
+    .ahi-login-container .control-label {
+        padding-bottom: 5px;
+    }
+    .ahi-login-container .login-form {
+        margin-left: 10%;
+    }
+    .ahi-login-container .container form input[type=text], .ahi-login-container .container form input[type=password] {
+        width: 90%;
+    }
+    .ahi-register-container .blue-button {
+        width: 50%;
+    }
+    .ahi-payment-container .blue-button {
+        width: 80%;
+    }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+@media only screen and (min-width: 600px) {
+    .ahi-login-container .container {
+        width: 100%;
+    }
+    .ahi-login-container .control-label {
+        padding-bottom: 5px;
+    }
+    .ahi-register-container .blue-button {
+        width: 30%;
+    }
+    .ahi-payment-container .blue-button {
+        width: 40%;
+    }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+
+@media only screen and (min-width: 768px) {
+    .ahi-login-container .container {
+        width: 100%;
+    }
+    .ahi-login-container .control-label {
+        padding-bottom: 5px;
+    }
+    .ahi-payment-container .blue-button {
+        width: 50%;
+    }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+
+@media only screen and (min-width: 992px) {
+    .ahi-login-container .container {
+        width: 80%;
+    }
+    .ahi-login-container .control-label {
+        padding-bottom: 5px;
+    }
+}
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+@media only screen and (min-width: 1200px) {
+    .ahi-login-container .container {
+        width: 60%;
+    }
+    .ahi-register-container .blue-button {
+        width: 15%;
+    }
+    .ahi-payment-container .blue-button {
+        width: 20%;
+    }
+}

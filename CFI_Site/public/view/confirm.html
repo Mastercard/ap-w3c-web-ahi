@@ -1,0 +1,123 @@
+<!-- Copyright (c) 2021 Mastercard
+ 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+ 
+    http://www.apache.org/licenses/LICENSE-2.0
+ 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ 
+-->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="referrer" content="no-referrer" /> -->
+    <link rel="manifest" href="manifest.json">
+    <title>You are paying with Ghobank</title>
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/site.css" rel="stylesheet" />
+    <link href="assets/css/custom.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <img src="assets/images/partner-icon.png" alt="logo" />
+                    <h2>&nbsp;Ghobank AHI</h2>
+                </div>
+            </div>
+        </nav>
+        <div class="container text-center ahi-payment-container landing-page">
+            <!-- <div class="row form-group edit-label" style="display: none;">
+                <input type="checkbox" id="isNonW3C" /> Non-W3C flow
+            </div> -->
+            <div class="row form-group">
+                <div class="col-lg-offset-3 col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                    <button class="blue-button" type="button" id="cancel" onclick="onCancel()">
+                        CANCEL
+                    </button>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                    <button class="blue-button" type="button" id="confirm" onclick="onConfirm()">
+                        CONFIRM
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="lowBalanceActionCheck">Low balance</label>
+                    <input type="checkbox" id="lowBalanceActionCheck" />
+                </div>
+            </div>
+        </div>
+        <div class="loader"></div>
+    </div>
+    <script src="assets/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="assets/js/browser-polyfill.min.js"></script>
+    <script src="assets/js/AHIArtefact.js"></script>
+    <script src="assets/js/bundledJS.js"></script>
+    <script type="text/javascript">
+        var paymentRequestClient = null;
+        var isNonW3C = false;
+        var paymentRequestObj = {};
+
+        if (ahi_core.isSupportedBrowser()) {
+            $('.isNonW3C').css('display', 'block');
+        }
+
+        try {
+            if (window.localStorage.getItem('isNonW3C') === 'true') {
+                $('#isNonW3C').prop('checked', true);
+                isNonW3C = true;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+
+        $('#isNonW3C').change(function() {
+            if ($(this).is(':checked')) {
+                isNonW3C = true;
+            }
+        });
+
+        if (ahi_core.isSupportedBrowser() && !isNonW3C) {
+            try {
+                navigator.serviceWorker.addEventListener('message', function(e) {
+                    paymentRequestClient = e['source'];
+                    paymentRequestObj['methodData'] = e['data']["methodData"];
+                    paymentRequestObj['requestBillingAddress'] = e['data']['requestBillingAddress'];
+                    paymentRequestObj['paymentRequestId'] = e['data']['paymentRequestId'];
+
+                    if (paymentRequestObj['methodData'][0]['data']['merchantCertificateURL']) {
+                        validateCertificate(paymentRequestObj['methodData'][0]['data']['merchantCertificateURL'])
+                            .then(function(isValidCertificate) {
+                                if (!isValidCertificate) {
+                                    loadUnauthorizedPage(ERROR_MESSAGES['AHI5011']);
+                                }
+                            }).catch(function(error) {
+                                loadUnauthorizedPage(ERROR_MESSAGES['AHI5011']);
+                            });
+                    }
+                });
+                navigator.serviceWorker.controller.postMessage('payment_app_window_ready');
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    </script>
+</body>
+
+</html>
